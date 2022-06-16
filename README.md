@@ -4,14 +4,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Used libraries
 
-![Typescript](https://img.shields.io/badge/-Typescript-000000?style=flat-square&logo=Typescript)
-![React](https://img.shields.io/badge/-React-000000?style=flat-square&logo=React)
-![Redux](https://img.shields.io/badge/-Redux-000000?style=flat-square&logo=Redux)
-![NodeJS](https://img.shields.io/badge/-NodeJS-000000?style=flat-square&logo=Node.js)
-![SocketIO](https://img.shields.io/badge/-SocketIO-000000?style=flat-square&logo=socketdotio)
-![MUI](https://img.shields.io/badge/-MUI-000000?style=flat-square&logo=MUI)
-![Jest](https://img.shields.io/badge/-Jest-000000?style=flat-square&logo=jest)
-![ESLint](https://img.shields.io/badge/-ESLint-000000?style=flat-square&logo=eslint)
+![Typescript](https://img.shields.io/badge/-Typescript-333333?style=flat-square&logo=Typescript)
+![React](https://img.shields.io/badge/-React-333333?style=flat-square&logo=React)
+![Redux](https://img.shields.io/badge/-Redux-333333?style=flat-square&logo=Redux)
+![NodeJS](https://img.shields.io/badge/-NodeJS-333333?style=flat-square&logo=Node.js)
+![SocketIO](https://img.shields.io/badge/-SocketIO-333333?style=flat-square&logo=socketdotio)
+![MUI](https://img.shields.io/badge/-MUI-333333?style=flat-square&logo=MUI)
+![Jest](https://img.shields.io/badge/-Jest-333333?style=flat-square&logo=jest)
+![ESLint](https://img.shields.io/badge/-ESLint-333333?style=flat-square&logo=eslint)
 
 ### `npm start`
 

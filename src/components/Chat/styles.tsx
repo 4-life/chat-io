@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import { styled } from '@mui/material/styles';
-import { Theme } from '~/styles';
+import { Theme } from 'styles';
 
 export const ExitButton = styled(IconButton)<IconButtonProps>(
   ({ theme }: { theme: Theme }) => ({
@@ -29,9 +29,11 @@ export const ChatBlock = styled(Box)(({ theme }: { theme: Theme }) => ({
   height: '75vh',
   borderRadius: '10px',
   boxShadow: '0 3em 4em rgb(16 19 40 / 60%)',
-  borderTop: `2px solid ${theme.palette.border.main}`,
+  borderTop: `2px solid ${theme.palette.border.light}`,
   background: 'linear-gradient(0deg, #1c213e 0%, #4b5789 60%)',
-  [theme.breakpoints.down('sm')]: {
+  overflow: 'hidden',
+
+  [theme.breakpoints.down('lg')]: {
     width: '100vw',
     height: '100vh',
   },
@@ -60,13 +62,27 @@ export const Users = styled(Box)(({ theme }: { theme: Theme }) => ({
   borderRight: `1px solid ${theme.palette.border.main}`,
   boxShadow: `.6em 0 1em -1em ${theme.palette.border.main}`,
   alignItems: 'flex-start',
+  flexDirection: 'column',
+  maxWidth: '60%',
+  overflowY: 'scroll',
+  scrollbarWidth: 'none',
+
+  '&::-webkit-scrollbar': {
+    display: 'none',
+  },
+
+  [theme.breakpoints.down('sm')]: {
+    display: 'none',
+  },
 }));
 
-export const Messages = styled(Box)({
+export const Messages = styled(Box)(({ theme }: { theme: Theme }) => ({
   flex: 2,
   display: 'flex',
   position: 'relative',
-});
+  borderTop: `1px solid ${theme.palette.border.main}`,
+  boxShadow: `0 0 1.5em -.5em inset ${theme.palette.border.dark}`,
+}));
 
 export const Info = styled(Box)(({ theme }: { theme: Theme }) => ({
   flex: 0,
@@ -81,12 +97,16 @@ export const Info = styled(Box)(({ theme }: { theme: Theme }) => ({
   },
 }));
 
-export const MessagesList = styled(Box)({
-  padding: '2em 4em 110px 4em',
+export const MessagesList = styled(Box)(({ theme }: { theme: Theme }) => ({
+  padding: '2em 2em 110px',
   overflowY: 'scroll',
   scrollbarWidth: 'none',
 
   '&::-webkit-scrollbar': {
     display: 'none',
   },
-});
+
+  [theme.breakpoints.down('md')]: {
+    padding: '2em 0 110px',
+  },
+}));

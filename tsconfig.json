@@ -19,13 +19,11 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "baseUrl": ".",
-    "paths": {
-        "~/*": ["./src/*"]
-    }
+    "baseUrl": "./src",
+    "rootDir": "./",
   },
   "include": [
-    "src"
+    "src/**/*"
   ],
   "exclude": ["node_modules", "build"]
 }

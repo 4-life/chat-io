@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, createRef, useEffect, useCallback } from 'react';
+import { shallowEqual, useSelector } from 'react-redux';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
+import { UserData } from 'types';
+import { RootState } from 'store/reducers';
 import Typography from '@mui/material/Typography';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import { users } from 'dummy';
 import {
   Main,
   ExitButton,
@@ -15,12 +18,45 @@ import {
   MessagesList,
 } from './styles';
 import ChatInput from './components/ChatInput';
+import UserInGroup from './components/UserInGroup';
+import Message from './components/Message';
+import VisitorInfo from './components/VisitorInfo';
 
 function Chat() {
-  const [showUserInfo, setShowUserInfo] = useState(false);
-  const showUserHandler = () => {
-    setShowUserInfo(!showUserInfo);
+  const ref = createRef<HTMLElement>();
+  const { messages } = useSelector(
+    (store: RootState) => store.messages,
+    shallowEqual
+  );
+  const [showUserInfo, setShowUserInfo] = useState<UserData | null>(null);
+  const showUserHandler = (user?: UserData): void => {
+    if (!user) {
+      setShowUserInfo(null);
+      return;
+    }
+
+    setShowUserInfo(user);
   };
+
+  const close = () => setShowUserInfo(null);
+
+  const scrollBottom = useCallback(() => {
+    if (!ref.current) {
+      return;
+    }
+
+    const el = ref.current;
+    setTimeout(() => {
+      el.scrollTop = el.scrollHeight;
+    }, 200);
+  }, [ref]);
+
+  useEffect(() => {
+    if (messages.length && ref.current) {
+      ref.current.scrollTop = ref.current.scrollHeight;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Main>
@@ -37,67 +73,28 @@ function Chat() {
 
           <Content>
             <Users>
-              <Button onClick={showUserHandler} color="info">
-                UserName
-              </Button>
+              {users?.map((user) => (
+                <UserInGroup
+                  user={user}
+                  key={user.id}
+                  selectUser={showUserHandler}
+                />
+              ))}
             </Users>
             <Messages>
-              <MessagesList>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Pellentesque eu dolor ullamcorper, vehicula lectus sed, sagittis
-                libero. Curabitur consectetur vel elit ut hendrerit. Suspendisse
-                eleifend lobortis suscipit. Fusce commodo, quam quis convallis
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Pellentesque eu dolor ullamcorper, vehicula lectus sed, sagittis
-                libero. Curabitur consectetur vel elit ut hendrerit. Suspendisse
-                eleifend lobortis suscipit. Fusce commodo, quam quis convallis
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Pellentesque eu dolor ullamcorper, vehicula lectus sed, sagittis
-                libero. Curabitur consectetur vel elit ut hendrerit. Suspendisse
-                eleifend lobortis suscipit. Fusce commodo, quam quis convallis
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Pellentesque eu dolor ullamcorper, vehicula lectus sed, sagittis
-                libero. Curabitur consectetur vel elit ut hendrerit. Suspendisse
-                eleifend lobortis suscipit. Fusce commodo, quam quis convallis
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Pellentesque eu dolor ullamcorper, vehicula lectus sed, sagittis
-                libero. Curabitur consectetur vel elit ut hendrerit. Suspendisse
-                eleifend lobortis suscipit. Fusce commodo, quam quis convallis
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Pellentesque eu dolor ullamcorper, vehicula lectus sed, sagittis
-                libero. Curabitur consectetur vel elit ut hendrerit. Suspendisse
-                eleifend lobortis suscipit. Fusce commodo, quam quis convallis
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Pellentesque eu dolor ullamcorper, vehicula lectus sed, sagittis
-                libero. Curabitur consectetur vel elit ut hendrerit. Suspendisse
-                eleifend lobortis suscipit. Fusce commodo, quam quis convallis
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Pellentesque eu dolor ullamcorper, vehicula lectus sed, sagittis
-                libero. Curabitur consectetur vel elit ut hendrerit. Suspendisse
-                eleifend lobortis suscipit. Fusce commodo, quam quis convallis
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Pellentesque eu dolor ullamcorper, vehicula lectus sed, sagittis
-                libero. Curabitur consectetur vel elit ut hendrerit. Suspendisse
-                eleifend lobortis suscipit. Fusce commodo, quam quis convallis
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Pellentesque eu dolor ullamcorper, vehicula lectus sed, sagittis
-                libero. Curabitur consectetur vel elit ut hendrerit. Suspendisse
-                eleifend lobortis suscipit. Fusce commodo, quam quis convallis
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Pellentesque eu dolor ullamcorper, vehicula lectus sed, sagittis
-                libero. Curabitur consectetur vel elit ut hendrerit. Suspendisse
-                eleifend lobortis suscipit. Fusce commodo, quam quis convallis
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Pellentesque eu dolor ullamcorper, vehicula lectus sed, sagittis
-                libero. Curabitur consectetur vel elit ut hendrerit. Suspendisse
-                eleifend lobortis suscipit. Fusce commodo, quam quis convallis
+              <MessagesList ref={ref}>
+                {messages?.map((message) => (
+                  <Message message={message} key={message.id} />
+                ))}
               </MessagesList>
-              <ChatInput />
+              <ChatInput scrollBottom={scrollBottom} />
             </Messages>
           </Content>
         </Box>
         <Info className={showUserInfo ? 'visible' : ''}>
-          <Typography>Main user info data</Typography>
+          {showUserInfo && (
+            <VisitorInfo user={showUserInfo} closeHandler={close} />
+          )}
         </Info>
       </ChatBlock>
     </Main>

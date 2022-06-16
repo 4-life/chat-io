@@ -1,16 +1,8 @@
-import IconButton, { IconButtonProps } from '@mui/material/IconButton';
-import { alpha, styled } from '@mui/material/styles';
-import { Theme } from '~/styles';
+import { styled } from '@mui/material/styles';
+import { Theme } from 'styles';
 
-export const ExitButton = styled(IconButton)<IconButtonProps>(
-  ({ theme }: { theme: Theme }) => ({
-    color: theme.palette.success.main,
-    boxShadow: `0px 0px 0px 8px ${alpha(theme.palette.success.main, 0.16)}`,
-  })
-);
-
-export const Box = styled('div')(({ theme }: { theme: Theme }) => ({
-  display: 'block',
+const Box = styled('div')(({ theme }: { theme: Theme }) => ({
+  display: 'flex',
   height: '100px',
   padding: '1em',
   width: '100%',
@@ -19,4 +11,7 @@ export const Box = styled('div')(({ theme }: { theme: Theme }) => ({
   background: 'linear-gradient(0deg, #1b213e 50%, rgba(52, 61, 107, 0.8) 100%)',
   borderTop: `1px solid ${theme.palette.border.main}`,
   boxShadow: `0 -.6em 1em -1em ${theme.palette.border.main}`,
+  alignItems: 'center',
 }));
+
+export default Box;

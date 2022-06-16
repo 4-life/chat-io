@@ -36,13 +36,16 @@ declare module '@mui/material/styles' {
 }
 
 const theme = createTheme({
+  typography: {
+    fontFamily: 'Josefin Sans',
+  },
   status: {
     danger: '#e53e3e',
   },
   palette: {
     text: {
       primary: '#f0f3ff',
-      secondary: '#f0f3ff',
+      secondary: '#8f99cc',
     },
     primary: {
       // light: will be calculated from palette.primary.main,
@@ -52,7 +55,7 @@ const theme = createTheme({
     },
     secondary: {
       light: orange[500],
-      main: '#0044ff',
+      main: '#8f99cc',
       // dark: will be calculated from palette.secondary.main,
       contrastText: '#ffcc00',
     },
@@ -61,8 +64,12 @@ const theme = createTheme({
       contrastText: '#fff',
     },
     border: {
+      light: '#5e6ba9',
       main: '#525d93',
       dark: '#363e62',
+    },
+    success: {
+      main: '#18e122',
     },
     // Used by `getContrastText()` to maximize the contrast between
     // the background and the text.

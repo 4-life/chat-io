@@ -16,7 +16,7 @@
     }
   },
   "rules": {
-    "import/no-unresolved": [1, {"ignore": ["~/*"] }],
+    "import/no-unresolved": [1, {"ignore": [""] }],
     "import/extensions": [
       "error",
       "ignorePackages",
@@ -34,6 +34,8 @@
         "singleQuote": true
       }
     ],
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": ["error"],
     "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".ts"] }],
     "indent": ["error", 2, { "SwitchCase": 1, "ObjectExpression": 1, "ImportDeclaration": 1 }],
     "jsx-quotes": ["error", "prefer-double"],
@@ -61,7 +63,8 @@
     "one-var": ["error", "never"],
     "no-unreachable": "error",
     "semi": "error",
-    "react-hooks/exhaustive-deps": "error"
+    "react-hooks/exhaustive-deps": "error",
+    "default-param-last": "off"
   },
   "ignorePatterns": ["node_modules", "*.d.ts", "service-worker.js"]
 }
