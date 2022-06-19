@@ -25,3 +25,7 @@ Launches the test runner
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
+
+## Back-end repo:
+
+https://github.com/4-life/chat-io-server
