@@ -24,7 +24,7 @@ function Message({ message, user }: Props) {
       spacing={2}
       sx={{ flexDirection: me ? 'row-reverse' : 'inherit', margin: '.5em 0' }}
     >
-      <Grid item xs={2}>
+      <Grid item xs={3} sm={3} md={2}>
         <Avatar
           alt={`${user?.name || 'guest'} avatar`}
           src={user ? getAvatarUrl(user.avatar) : undefined}
@@ -32,7 +32,7 @@ function Message({ message, user }: Props) {
           sx={{ width: 64, height: 64, borderRadius: '20px' }}
         />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={5} sm={5} md={6}>
         <UserText>
           <Typography color="secondary">{text}</Typography>
           <Box>

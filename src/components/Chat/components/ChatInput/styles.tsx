@@ -1,7 +1,8 @@
+import { Popover } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Theme } from 'styles';
 
-const Box = styled('div')(({ theme }: { theme: Theme }) => ({
+export const Box = styled('div')(({ theme }: { theme: Theme }) => ({
   display: 'flex',
   height: '100px',
   padding: '1em',
@@ -15,4 +16,8 @@ const Box = styled('div')(({ theme }: { theme: Theme }) => ({
   backdropFilter: 'blur(10px)',
 }));
 
-export default Box;
+export const StyledPopover = styled(Popover)({
+  '& .MuiPopover-paper': {
+    background: 'transparent',
+  },
+});

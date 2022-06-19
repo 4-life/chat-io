@@ -35,3 +35,21 @@ img::selection {
 img::-moz-selection {
   background: transparent;
 }
+
+em-emoji-picker {
+  --background-rgb: 85, 170, 255;
+  --border-radius: 24px;
+  --category-icon-size: 24px;
+  --color-border-hover: rgba(0, 0, 0, 0.1);
+  --color-border: rgba(0, 0, 0, 0.05);
+  --font-family: 'Josefin Sans', sans-serif;
+  --font-size: 20px;
+  --rgb-accent: 143, 153, 204;
+  --rgb-background: 82, 92, 139;
+  --rgb-color: 143, 153, 204;
+  --rgb-input: 255, 235, 235;
+
+  height: 40vh;
+  min-height: 300px;
+  max-height: 600px;
+}
