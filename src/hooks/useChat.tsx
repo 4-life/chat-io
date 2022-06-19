@@ -3,6 +3,9 @@ import { io } from 'socket.io-client';
 import { useShallowCompareEffect } from 'react-use';
 import { SocketInstance, UserData, UserMessage, SocketActions } from 'types';
 import randomId from 'utils/randomId';
+import env from 'environment';
+
+const { SERVER_URL } = env();
 
 const useChat = (currentUser: UserData | null, scrollBottom: () => void) => {
   const [error, setError] = useState(false);
@@ -13,7 +16,7 @@ const useChat = (currentUser: UserData | null, scrollBottom: () => void) => {
 
   useShallowCompareEffect(() => {
     if (currentUser) {
-      socketRef.current = io(process.env.SERVER_URL || '');
+      socketRef.current = io(SERVER_URL);
       socketRef.current.emit(SocketActions.USER_ADD, currentUser);
       socketRef.current.on(SocketActions.USERS, (usersList) => {
         setUsers(usersList);

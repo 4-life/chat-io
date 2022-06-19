@@ -37,7 +37,6 @@
       "/!node_modules\\/emoji-mart/"
     ]
   },
-  "proxy": "http://localhost:3005/",
   "browserslist": {
     "production": [
       ">0.2%",
