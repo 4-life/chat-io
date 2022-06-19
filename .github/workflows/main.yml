@@ -30,4 +30,4 @@ jobs:
           aws-region: eu-central-1
 
       - name: Deploy static site to S3 bucket
-        run: aws s3 sync ./out/ s3://chatio4life --delete
+        run: aws s3 sync ./build/ s3://chatio4life --delete
