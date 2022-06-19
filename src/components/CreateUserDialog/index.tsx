@@ -78,7 +78,6 @@ function CreateUserDialog() {
             onChange={handleChangeName}
           />
           <TextField
-            autoFocus
             margin="dense"
             label="Your status"
             type="text"

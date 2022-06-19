@@ -16,10 +16,10 @@ export const ExitButton = styled(IconButton)<IconButtonProps>(
 
 export const Main = styled('main')(({ theme }: { theme: Theme }) => ({
   display: 'flex',
-  minHeight: '100vh',
+  height: '100%',
   background: theme.gradient.main,
   justifyContent: 'center',
-  alignItems: 'center',
+  alignItems: 'stretch',
 }));
 
 export const ChatBlock = styled(Box)(({ theme }: { theme: Theme }) => ({
@@ -35,7 +35,7 @@ export const ChatBlock = styled(Box)(({ theme }: { theme: Theme }) => ({
 
   [theme.breakpoints.down('lg')]: {
     width: '100vw',
-    height: '100vh',
+    height: '100%',
   },
 }));
 
