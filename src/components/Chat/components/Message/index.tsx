@@ -7,15 +7,15 @@ import DoneAllIcon from '@mui/icons-material/DoneAll';
 import DoneIcon from '@mui/icons-material/Done';
 import { getAvatarUrl } from 'utils/avatars';
 
-import { UserMessage } from 'types';
+import { UserData, UserMessage } from 'types';
 import isToday from 'utils/isToday';
 
 import { UserText, TextDate, icon } from './styles';
 
-type Props = { message: UserMessage };
+type Props = { message: UserMessage; user: UserData | undefined };
 
-function Message({ message }: Props) {
-  const { me, user, text, status, date } = message;
+function Message({ message, user }: Props) {
+  const { me, text, status, date } = message;
   const parsedDate = new Date(date);
 
   return (
@@ -26,8 +26,8 @@ function Message({ message }: Props) {
     >
       <Grid item xs={2}>
         <Avatar
-          alt={`${user.name} avatar`}
-          src={getAvatarUrl(user.avatar)}
+          alt={`${user?.name || 'guest'} avatar`}
+          src={user ? getAvatarUrl(user.avatar) : undefined}
           variant="rounded"
           sx={{ width: 64, height: 64, borderRadius: '20px' }}
         />

@@ -39,7 +39,9 @@ function UserInGroup({ user, selectUser }: Props) {
             <UserStatus color="secondary">{status}</UserStatus>
           </Grid>
           <Grid item xs={2}>
-            <TimeAgo color="secondary">{getTimeAgo(parsedDate)}</TimeAgo>
+            <TimeAgo color="secondary">
+              {user.online ? getTimeAgo(parsedDate) : 'offline'}
+            </TimeAgo>
           </Grid>
         </Grid>
       </Btn>

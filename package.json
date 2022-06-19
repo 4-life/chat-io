@@ -35,7 +35,7 @@
     "test": "react-scripts test",
     "lint": "eslint \"src/**/*.{ts,tsx}\""
   },
-  "proxy": "http://localhost:3005",
+  "proxy": "http://localhost:3005/",
   "browserslist": {
     "production": [
       ">0.2%",

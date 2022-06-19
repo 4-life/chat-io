@@ -8,23 +8,16 @@ export interface UserData {
   messages?: number;
   online?: boolean;
   avatar: string;
+  socketId?: string;
 }
 
 export interface UserMessage {
   id: number;
   me?: boolean;
-  status?: 'sent' | 'received';
+  status: 'sent' | 'received';
   date: string;
   text: string;
-  user: UserData;
-}
-
-export interface ServerToClientEvents {
-  noArg: () => void;
-  basicEmit: (a: number, b: string, c: Buffer) => void;
-  withAck: (d: string, callback: (e: number) => void) => void;
-  users: (users: UserData[]) => void;
-  messages: (messages: UserMessage[]) => void;
+  userId: number;
 }
 
 export enum SocketActions {
@@ -33,6 +26,13 @@ export enum SocketActions {
   MESSAGE_GET = 'message:get',
   MESSAGE_ADD = 'message:add',
   MESSAGE_REMOVE = 'message:remove',
+  USERS = 'users',
+  MESSAGES = 'messages',
+}
+
+export interface ServerToClientEvents {
+  [SocketActions.USERS]: (users: UserData[]) => void;
+  [SocketActions.MESSAGES]: (messages: UserMessage[]) => void;
 }
 
 export interface ClientToServerEvents {

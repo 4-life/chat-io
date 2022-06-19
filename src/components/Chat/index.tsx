@@ -1,11 +1,14 @@
-import React, { useState, createRef, useCallback } from 'react';
+import React, { useState, createRef, useCallback, useEffect } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { CallExitUser } from 'store/user/action';
 import Box from '@mui/material/Box';
-import { UserData } from 'types';
+import { UserData, UserMessage } from 'types';
 import { RootState } from 'store/reducer';
 import Typography from '@mui/material/Typography';
+import Alert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+
 import useChat from 'hooks/useChat';
 import {
   Main,
@@ -55,9 +58,22 @@ function Chat() {
     userExit(user?.id);
   };
 
-  const { users, messages, sendMessage, userExit } = useChat(
+  const { users, messages, sendMessage, userExit, error } = useChat(
     user,
     scrollBottom
+  );
+
+  useEffect(() => {
+    window.addEventListener('beforeunload', () => {
+      userExit(user?.id);
+    });
+  }, [user, userExit]);
+
+  const getUserByMessage = useCallback(
+    (message: UserMessage) => {
+      return users.find((u) => u.id === message.userId);
+    },
+    [users]
   );
 
   return (
@@ -68,7 +84,7 @@ function Chat() {
             <ExitButton onClick={handleExit}>
               <ArrowBackIosNewIcon />
             </ExitButton>
-            <Typography color="primary" variant="h4">
+            <Typography color="primary" variant="h4" sx={{ marginTop: '10px' }}>
               Zen Chat
             </Typography>
           </Header>
@@ -82,7 +98,11 @@ function Chat() {
             <Messages>
               <MessagesList ref={ref}>
                 {messages?.map((message) => (
-                  <Message message={message} key={message.id} />
+                  <Message
+                    message={message}
+                    key={message.id}
+                    user={getUserByMessage(message)}
+                  />
                 ))}
               </MessagesList>
               <ChatInput
@@ -97,6 +117,14 @@ function Chat() {
             <VisitorInfo user={showUserInfo} closeHandler={close} />
           )}
         </Info>
+        <Snackbar
+          open={error}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        >
+          <Alert severity="warning" variant="filled">
+            Restoring connection...
+          </Alert>
+        </Snackbar>
       </ChatBlock>
     </Main>
   );

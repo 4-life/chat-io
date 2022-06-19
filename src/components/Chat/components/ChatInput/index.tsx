@@ -1,21 +1,16 @@
 import React, { useState, SyntheticEvent } from 'react';
-// import { useDispatch } from 'react-redux';
 import IconButton from '@mui/material/IconButton';
 import Grid from '@mui/material/Grid';
 import Input from '@mui/material/Input';
 import FormControl from '@mui/material/FormControl';
 import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt';
-import AttachFileIcon from '@mui/icons-material/AttachFile';
 import SendIcon from '@mui/icons-material/Send';
-// import { GetAddMessage } from 'store/actions/messages';
-// import { users } from 'dummy';
 
 import Box from './styles';
 
 type Props = { scrollBottom: () => void; sendMessage: (text: string) => void };
 
 function ChatInput({ scrollBottom, sendMessage }: Props) {
-  // const dispatch = useDispatch();
   const [txt, setTxt] = useState<string>('');
   const [valid, setValid] = useState<boolean>(false);
   const sendMsgHandle = (event: SyntheticEvent) => {
@@ -54,7 +49,7 @@ function ChatInput({ scrollBottom, sendMessage }: Props) {
               <SentimentSatisfiedAltIcon fontSize="small" />
             </IconButton>
           </Grid>
-          <Grid item xs={9}>
+          <Grid item xs={10}>
             <Input
               color="secondary"
               placeholder="Type something..."
@@ -73,11 +68,6 @@ function ChatInput({ scrollBottom, sendMessage }: Props) {
                 <SendIcon fontSize="small" />
               </IconButton>
             ) : null}
-          </Grid>
-          <Grid item xs={1}>
-            <IconButton color="secondary">
-              <AttachFileIcon fontSize="small" />
-            </IconButton>
           </Grid>
         </Grid>
       </FormControl>

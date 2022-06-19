@@ -7,7 +7,9 @@ import TextField from '@mui/material/TextField';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
+import FormControl from '@mui/material/FormControl';
 import { avatars, getAvatarUrl } from 'utils/avatars';
+import randomId from 'utils/randomId';
 import { ImageButton, ImageSrc, StyledDialog, Avatars } from './styles';
 
 function CreateUserDialog() {
@@ -25,9 +27,12 @@ function CreateUserDialog() {
     }
 
     setOpen(false);
+    setUsername('');
+    setUserstatus('');
+    setUseravatar('');
     dispatch(
       CallAddUser({
-        id: new Date().getTime() + Math.ceil(Math.random() * 1000),
+        id: randomId(),
         name: username,
         status: userstatus,
         avatar: useravatar,
@@ -55,40 +60,48 @@ function CreateUserDialog() {
     <StyledDialog open={open}>
       <DialogTitle>Create your character</DialogTitle>
       <DialogContent>
-        <TextField
-          autoFocus
-          margin="dense"
-          label="Your name"
-          type="text"
+        <FormControl
+          component="form"
+          autoComplete="off"
+          noValidate
           fullWidth
-          variant="standard"
-          value={username}
-          onChange={handleChangeName}
-        />
-        <TextField
-          autoFocus
-          margin="dense"
-          label="Your status"
-          type="text"
-          fullWidth
-          variant="standard"
-          value={userstatus}
-          onChange={handleChangeStatus}
-        />
-        <Avatars>
-          {avatars.map((avatar) => (
-            <ImageButton
-              focusRipple
-              key={avatar}
-              onClick={() => handleChangeAvatar(avatar)}
-              className={avatar === useravatar ? 'active' : ''}
-            >
-              <ImageSrc
-                style={{ backgroundImage: `url(${getAvatarUrl(avatar)})` }}
-              />
-            </ImageButton>
-          ))}
-        </Avatars>
+          onSubmit={handleJoin}
+        >
+          <TextField
+            autoFocus
+            margin="dense"
+            label="Your name"
+            type="text"
+            fullWidth
+            variant="standard"
+            value={username}
+            onChange={handleChangeName}
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            label="Your status"
+            type="text"
+            fullWidth
+            variant="standard"
+            value={userstatus}
+            onChange={handleChangeStatus}
+          />
+          <Avatars>
+            {avatars.map((avatar) => (
+              <ImageButton
+                focusRipple
+                key={avatar}
+                onClick={() => handleChangeAvatar(avatar)}
+                className={avatar === useravatar ? 'active' : ''}
+              >
+                <ImageSrc
+                  style={{ backgroundImage: `url(${getAvatarUrl(avatar)})` }}
+                />
+              </ImageButton>
+            ))}
+          </Avatars>
+        </FormControl>
       </DialogContent>
       <DialogActions>
         <Button onClick={handleJoin} variant="contained">

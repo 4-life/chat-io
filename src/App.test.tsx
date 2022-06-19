@@ -4,6 +4,6 @@ import App from './App';
 
 test('renders page title', () => {
   render(<App />);
-  const linkElement = screen.getByText(/Group Chat/i);
+  const linkElement = screen.getByText(/Zen Chat/i);
   expect(linkElement).toBeInTheDocument();
 });
