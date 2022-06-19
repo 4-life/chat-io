@@ -13,5 +13,25 @@ body, html, div#root {
 }
 
 * {
+  -webkit-tap-highlight-color: transparent;
   box-sizing: border-box;
+  outline: none;
+}
+
+::selection {
+  background: transparent;
+  color: #fff;
+}
+
+::-moz-selection {
+  background: transparent;
+  color: #fff;
+}
+
+img::selection {
+  background: transparent;
+}
+
+img::-moz-selection {
+  background: transparent;
 }

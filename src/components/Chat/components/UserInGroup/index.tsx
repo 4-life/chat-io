@@ -5,6 +5,7 @@ import Grid from '@mui/material/Grid';
 
 import { UserData } from 'types';
 import getTimeAgo from 'utils/timeAgo';
+import { getAvatarUrl } from 'utils/avatars';
 
 import { Box, TimeAgo, UserName, UserStatus, Btn } from './styles';
 
@@ -12,7 +13,7 @@ type Props = { user: UserData; selectUser: (user?: UserData) => void };
 
 function UserInGroup({ user, selectUser }: Props) {
   const { name, status, online, connectedDate, avatar } = user;
-  const parsedDate = new Date(connectedDate);
+  const parsedDate = connectedDate ? new Date(connectedDate) : new Date();
 
   return (
     <Box>
@@ -27,7 +28,7 @@ function UserInGroup({ user, selectUser }: Props) {
             >
               <Avatar
                 alt={`${name} avatar`}
-                src={avatar}
+                src={getAvatarUrl(avatar)}
                 variant="rounded"
                 sx={{ width: '100%', height: '100%', borderRadius: '20px' }}
               />

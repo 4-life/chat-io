@@ -1,18 +1,12 @@
-import { messages as dummyMessages } from 'dummy';
 import { UserMessage } from 'types';
-import {
-  ADD_MESSAGE,
-  DELETE_MESSAGE,
-  UPDATE_MESSAGE,
-  Action,
-} from '../actions/messages';
+import { ADD_MESSAGE, DELETE_MESSAGE, UPDATE_MESSAGE, Action } from './action';
 
 export interface State {
   messages: UserMessage[];
 }
 
 const initState: State = {
-  messages: [...dummyMessages],
+  messages: [],
 };
 
 export const reducer = (state: State = initState, action: Action) => {

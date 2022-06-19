@@ -14,13 +14,13 @@ export const ExitButton = styled(IconButton)<IconButtonProps>(
   })
 );
 
-export const Main = styled('main')({
+export const Main = styled('main')(({ theme }: { theme: Theme }) => ({
   display: 'flex',
   minHeight: '100vh',
-  background: 'linear-gradient(0deg, #202543 0%, #525c8b 80%)',
+  background: theme.gradient.main,
   justifyContent: 'center',
   alignItems: 'center',
-});
+}));
 
 export const ChatBlock = styled(Box)(({ theme }: { theme: Theme }) => ({
   display: 'flex',
@@ -101,6 +101,7 @@ export const MessagesList = styled(Box)(({ theme }: { theme: Theme }) => ({
   padding: '2em 2em 110px',
   overflowY: 'scroll',
   scrollbarWidth: 'none',
+  width: '100%',
 
   '&::-webkit-scrollbar': {
     display: 'none',

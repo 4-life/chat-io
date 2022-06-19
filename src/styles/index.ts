@@ -6,6 +6,10 @@ declare module '@mui/material/styles' {
     status: {
       danger: React.CSSProperties['color'];
     };
+
+    gradient: {
+      main: React.CSSProperties['background'];
+    };
   }
 
   interface Palette {
@@ -32,15 +36,21 @@ declare module '@mui/material/styles' {
     status: {
       danger: React.CSSProperties['color'];
     };
+    gradient: {
+      main: React.CSSProperties['background'];
+    };
   }
 }
 
 const theme = createTheme({
   typography: {
-    fontFamily: 'Josefin Sans',
+    fontFamily: 'Josefin Sans, sans-serif',
   },
   status: {
     danger: '#e53e3e',
+  },
+  gradient: {
+    main: 'linear-gradient(0deg, #202543 0%, #525c8b 80%)',
   },
   palette: {
     text: {

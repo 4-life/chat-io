@@ -4,6 +4,7 @@ import Grid from '@mui/material/Grid';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 
 import { UserData } from 'types';
+import { getAvatarUrl } from 'utils/avatars';
 
 import { Box, UserName, UserStatus, Header, AvatarImg } from './styles';
 
@@ -23,7 +24,11 @@ function VisitorInfo({ user, closeHandler }: Props) {
 
       <Grid container spacing={2} alignItems="center">
         <Grid item xs={4}>
-          <AvatarImg alt={`${name} avatar`} src={avatar} variant="rounded" />
+          <AvatarImg
+            alt={`${name} avatar`}
+            src={getAvatarUrl(avatar)}
+            variant="rounded"
+          />
         </Grid>
         <Grid item xs={8}>
           <UserName color="primary">{name}</UserName>

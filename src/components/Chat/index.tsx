@@ -1,11 +1,12 @@
-import React, { useState, createRef, useEffect, useCallback } from 'react';
-import { shallowEqual, useSelector } from 'react-redux';
+import React, { useState, createRef, useCallback } from 'react';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { CallExitUser } from 'store/user/action';
 import Box from '@mui/material/Box';
 import { UserData } from 'types';
-import { RootState } from 'store/reducers';
+import { RootState } from 'store/reducer';
 import Typography from '@mui/material/Typography';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import { users } from 'dummy';
+import useChat from 'hooks/useChat';
 import {
   Main,
   ExitButton,
@@ -24,18 +25,16 @@ import VisitorInfo from './components/VisitorInfo';
 
 function Chat() {
   const ref = createRef<HTMLElement>();
-  const { messages } = useSelector(
-    (store: RootState) => store.messages,
-    shallowEqual
-  );
+  const dispatch = useDispatch();
+  const { user } = useSelector((store: RootState) => store.user, shallowEqual);
   const [showUserInfo, setShowUserInfo] = useState<UserData | null>(null);
-  const showUserHandler = (user?: UserData): void => {
-    if (!user) {
+  const showUserHandler = (userData?: UserData): void => {
+    if (!userData) {
       setShowUserInfo(null);
       return;
     }
 
-    setShowUserInfo(user);
+    setShowUserInfo(userData);
   };
 
   const close = () => setShowUserInfo(null);
@@ -51,34 +50,33 @@ function Chat() {
     }, 200);
   }, [ref]);
 
-  useEffect(() => {
-    if (messages.length && ref.current) {
-      ref.current.scrollTop = ref.current.scrollHeight;
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const handleExit = () => {
+    dispatch(CallExitUser());
+    userExit(user?.id);
+  };
+
+  const { users, messages, sendMessage, userExit } = useChat(
+    user,
+    scrollBottom
+  );
 
   return (
     <Main>
       <ChatBlock>
         <Box sx={{ flexDirection: 'column', flex: 5 }}>
           <Header>
-            <ExitButton>
+            <ExitButton onClick={handleExit}>
               <ArrowBackIosNewIcon />
             </ExitButton>
             <Typography color="primary" variant="h4">
-              Group Chat
+              Zen Chat
             </Typography>
           </Header>
 
           <Content>
             <Users>
-              {users?.map((user) => (
-                <UserInGroup
-                  user={user}
-                  key={user.id}
-                  selectUser={showUserHandler}
-                />
+              {users?.map((u) => (
+                <UserInGroup user={u} key={u.id} selectUser={showUserHandler} />
               ))}
             </Users>
             <Messages>
@@ -87,7 +85,10 @@ function Chat() {
                   <Message message={message} key={message.id} />
                 ))}
               </MessagesList>
-              <ChatInput scrollBottom={scrollBottom} />
+              <ChatInput
+                scrollBottom={scrollBottom}
+                sendMessage={sendMessage}
+              />
             </Messages>
           </Content>
         </Box>

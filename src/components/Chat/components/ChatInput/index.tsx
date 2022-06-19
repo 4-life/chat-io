@@ -1,5 +1,5 @@
 import React, { useState, SyntheticEvent } from 'react';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import IconButton from '@mui/material/IconButton';
 import Grid from '@mui/material/Grid';
 import Input from '@mui/material/Input';
@@ -7,15 +7,15 @@ import FormControl from '@mui/material/FormControl';
 import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import SendIcon from '@mui/icons-material/Send';
-import { GetAddMessage } from 'store/actions/messages';
-import { users } from 'dummy';
+// import { GetAddMessage } from 'store/actions/messages';
+// import { users } from 'dummy';
 
 import Box from './styles';
 
-type Props = { scrollBottom: () => void };
+type Props = { scrollBottom: () => void; sendMessage: (text: string) => void };
 
-function ChatInput({ scrollBottom }: Props) {
-  const dispatch = useDispatch();
+function ChatInput({ scrollBottom, sendMessage }: Props) {
+  // const dispatch = useDispatch();
   const [txt, setTxt] = useState<string>('');
   const [valid, setValid] = useState<boolean>(false);
   const sendMsgHandle = (event: SyntheticEvent) => {
@@ -25,16 +25,7 @@ function ChatInput({ scrollBottom }: Props) {
       return;
     }
 
-    dispatch(
-      GetAddMessage({
-        id: 123,
-        me: true,
-        text: txt,
-        status: 'sent',
-        date: new Date().toJSON(),
-        user: users[4],
-      })
-    );
+    sendMessage(txt);
 
     setValid(false);
     setTxt('');

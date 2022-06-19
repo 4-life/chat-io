@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
 import DoneIcon from '@mui/icons-material/Done';
+import { getAvatarUrl } from 'utils/avatars';
 
 import { UserMessage } from 'types';
 import isToday from 'utils/isToday';
@@ -26,7 +27,7 @@ function Message({ message }: Props) {
       <Grid item xs={2}>
         <Avatar
           alt={`${user.name} avatar`}
-          src={user.avatar}
+          src={getAvatarUrl(user.avatar)}
           variant="rounded"
           sx={{ width: 64, height: 64, borderRadius: '20px' }}
         />

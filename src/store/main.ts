@@ -1,8 +1,8 @@
 import { compose, applyMiddleware, Store as ReduxStore } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { configureStore } from '@reduxjs/toolkit';
-import reducer, { RootState } from './reducers';
-import saga from './sagas';
+import reducer, { RootState } from './reducer';
+import saga from './saga';
 
 export type Store = ReduxStore<RootState>;
 

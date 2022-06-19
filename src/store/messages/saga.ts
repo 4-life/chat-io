@@ -1,7 +1,7 @@
 import { put, call, takeEvery } from 'redux-saga/effects';
 import api from 'utils/api';
 
-import { DELETE_MESSAGE, DeleteMessage } from '../actions/messages';
+import { DELETE_MESSAGE, DeleteMessage } from './action';
 
 function* deleteMessage(action: DeleteMessage) {
   try {

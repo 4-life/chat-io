@@ -1,7 +1,8 @@
 import React from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import { Provider } from 'react-redux';
-import Chat from './components/Chat';
+import Chat from 'components/Chat';
+import CreateUserDialog from 'components/CreateUserDialog';
 import { createStore } from './store/main';
 import theme from './styles';
 
@@ -12,6 +13,7 @@ function App() {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <Chat />
+        <CreateUserDialog />
       </ThemeProvider>
     </Provider>
   );
