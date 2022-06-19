@@ -7,7 +7,7 @@ import { RootState } from 'store/reducer';
 import Typography from '@mui/material/Typography';
 import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 import useChat from 'hooks/useChat';
 import {
@@ -20,6 +20,7 @@ import {
   Messages,
   Info,
   MessagesList,
+  Logo,
 } from './styles';
 import ChatInput from './components/ChatInput';
 import UserInGroup from './components/UserInGroup';
@@ -81,12 +82,21 @@ function Chat() {
       <ChatBlock>
         <Box sx={{ flexDirection: 'column', flex: 5 }}>
           <Header>
-            <ExitButton onClick={handleExit}>
-              <ArrowBackIosNewIcon />
-            </ExitButton>
-            <Typography color="primary" variant="h4" sx={{ marginTop: '10px' }}>
-              Zen Chat
-            </Typography>
+            <Box sx={{ display: 'flex' }}>
+              <Logo />
+              <Typography
+                color="primary"
+                variant="h4"
+                sx={{ marginTop: '5px' }}
+              >
+                Zen Chat
+              </Typography>
+            </Box>
+            {user?.id ? (
+              <ExitButton onClick={handleExit}>
+                <LogoutIcon />
+              </ExitButton>
+            ) : null}
           </Header>
 
           <Content>

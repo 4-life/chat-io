@@ -30,7 +30,7 @@ export const ImageButton = styled(ButtonBase)(
 
     '&.active': {
       border: `3px solid ${theme.palette.border.light}`,
-      boxShadow: `0 0 1em .3em ${theme.palette.border.light}`,
+      boxShadow: `0 0 0.5em 0.4em ${theme.palette.border.light}`,
     },
   })
 );

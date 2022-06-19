@@ -19,5 +19,5 @@ export const getAvatarUrl = (avatar: string) => {
     return '';
   }
 
-  return `/images/avatars/${avatar}.png`;
+  return `/images/avatars/${avatar}.webp`;
 };

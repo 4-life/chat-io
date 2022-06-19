@@ -19,7 +19,7 @@ export const Main = styled('main')(({ theme }: { theme: Theme }) => ({
   height: '100%',
   background: theme.gradient.main,
   justifyContent: 'center',
-  alignItems: 'stretch',
+  alignItems: 'center',
 }));
 
 export const ChatBlock = styled(Box)(({ theme }: { theme: Theme }) => ({
@@ -46,7 +46,7 @@ export const Header = styled(Box)(({ theme }: { theme: Theme }) => ({
   boxShadow: `0 .6em 1em -1em ${theme.palette.border.main}`,
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'flex-start',
+  justifyContent: 'space-between',
   padding: '2em 1.5em',
 }));
 
@@ -111,3 +111,11 @@ export const MessagesList = styled(Box)(({ theme }: { theme: Theme }) => ({
     padding: '2em 0 110px',
   },
 }));
+
+export const Logo = styled(Box)({
+  width: '40px',
+  height: '40px',
+  backgroundImage: `url(/images/logo.webp)`,
+  backgroundSize: 'contain',
+  marginRight: '1em',
+});

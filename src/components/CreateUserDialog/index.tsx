@@ -8,6 +8,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import FormControl from '@mui/material/FormControl';
+import LoginIcon from '@mui/icons-material/Login';
 import { avatars, getAvatarUrl } from 'utils/avatars';
 import randomId from 'utils/randomId';
 import { ImageButton, ImageSrc, StyledDialog, Avatars } from './styles';
@@ -103,7 +104,13 @@ function CreateUserDialog() {
         </FormControl>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleJoin} variant="contained">
+        <Button
+          onClick={handleJoin}
+          variant="outlined"
+          size="large"
+          endIcon={<LoginIcon fontSize="small" />}
+          sx={{ width: '100%' }}
+        >
           Join
         </Button>
       </DialogActions>

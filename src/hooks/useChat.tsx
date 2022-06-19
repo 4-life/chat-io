@@ -29,6 +29,7 @@ const useChat = (currentUser: UserData | null, scrollBottom: () => void) => {
       socketRef.current.on('connect', () => {
         setError(false);
         socketRef.current?.emit(SocketActions.USER_ADD, currentUser);
+        socketRef.current?.emit(SocketActions.MESSAGE_GET);
       });
 
       socketRef.current.emit(SocketActions.MESSAGE_GET);
