@@ -16,7 +16,9 @@ const useChat = (currentUser: UserData | null, scrollBottom: () => void) => {
 
   useShallowCompareEffect(() => {
     if (currentUser) {
-      socketRef.current = io(SERVER_URL);
+      socketRef.current = io(SERVER_URL, {
+        secure: true,
+      });
       socketRef.current.emit(SocketActions.USER_ADD, currentUser);
       socketRef.current.on(SocketActions.USERS, (usersList) => {
         setUsers(usersList);
@@ -36,7 +38,9 @@ const useChat = (currentUser: UserData | null, scrollBottom: () => void) => {
 
       socketRef.current.on(SocketActions.MESSAGES, (messagesList) => {
         const updatedMessages = messagesList.map((msg) =>
-          msg.userId === currentUser?.id ? { ...msg, me: true } : msg
+          msg.userId === currentUser?.id
+            ? { ...msg, me: true }
+            : { ...msg, me: false }
         );
         setMessages(updatedMessages);
         scrollBottom();
@@ -57,17 +61,22 @@ const useChat = (currentUser: UserData | null, scrollBottom: () => void) => {
         return;
       }
 
-      socketRef.current?.emit(SocketActions.MESSAGE_ADD, {
+      const newMessage: UserMessage = {
         id: randomId(),
         userId: currentUser.id,
         text: messageText,
         date: new Date().toJSON(),
         status: 'sent',
-      });
+        me: true,
+      };
+
+      socketRef.current?.emit(SocketActions.MESSAGE_ADD, newMessage);
+
+      setMessages([...messages, newMessage]);
 
       scrollBottom();
     },
-    [currentUser, scrollBottom]
+    [currentUser, scrollBottom, setMessages, messages]
   );
 
   const removeMessage = (id: number) => {

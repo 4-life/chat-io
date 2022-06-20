@@ -64,7 +64,7 @@ function ChatInput({ scrollBottom, sendMessage }: Props) {
         fullWidth
         onSubmit={sendMsgHandle}
       >
-        <Grid container spacing={0}>
+        <Grid container spacing={0} sx={{ alignItems: 'center' }}>
           <Grid item xs={1}>
             <IconButton color="secondary" onClick={handleClick}>
               <SentimentSatisfiedAltIcon fontSize="small" />

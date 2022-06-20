@@ -112,10 +112,12 @@ export const MessagesList = styled(Box)(({ theme }: { theme: Theme }) => ({
   },
 }));
 
-export const Logo = styled(Box)({
+export const Logo = styled(Box)(({ theme }: { theme: Theme }) => ({
   width: '40px',
   height: '40px',
   backgroundImage: `url(/images/logo.webp)`,
   backgroundSize: 'contain',
   marginRight: '1em',
-});
+  borderRadius: '7px',
+  boxShadow: `0 0px 0.4em 0em inset ${theme.palette.border.dark}`,
+}));

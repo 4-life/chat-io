@@ -112,6 +112,7 @@ function Chat() {
                     message={message}
                     key={message.id}
                     user={getUserByMessage(message)}
+                    selectUser={showUserHandler}
                   />
                 ))}
               </MessagesList>

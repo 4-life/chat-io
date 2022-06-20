@@ -41,9 +41,14 @@ export const ImageSrc = styled('span')({
   right: 0,
   top: 0,
   bottom: 0,
-  backgroundSize: 'cover',
+  backgroundSize: '100%',
   backgroundPosition: 'center 40%',
   borderRadius: '2em',
+  transition: 'all .5s ease',
+
+  '&:hover': {
+    backgroundSize: '110%',
+  },
 });
 
 export const StyledDialog = styled(Dialog)(({ theme }: { theme: Theme }) => ({
