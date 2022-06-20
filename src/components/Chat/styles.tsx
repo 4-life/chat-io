@@ -108,7 +108,6 @@ export const MessagesList = styled(Box)(({ theme }: { theme: Theme }) => ({
   overflowY: 'scroll',
   scrollbarWidth: 'none',
   width: '100%',
-  overflow: 'hidden',
 
   '&::-webkit-scrollbar': {
     display: 'none',
