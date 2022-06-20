@@ -15,10 +15,6 @@ export const Box = styled('div')(({ theme }: { theme: Theme }) => ({
   boxShadow: `0 -.6em 1em -1em ${theme.palette.border.main}`,
   alignItems: 'center',
   backdropFilter: 'blur(10px)',
-
-  [theme.breakpoints.down('md')]: {
-    position: 'fixed',
-  },
 }));
 
 export const StyledPopover = styled(Popover)({
