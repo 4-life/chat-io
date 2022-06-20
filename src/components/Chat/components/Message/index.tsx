@@ -21,6 +21,12 @@ type Props = {
 
 function Message({ message, user, selectUser }: Props) {
   const { me, text, status, date } = message;
+
+  // user left the room, but his messages still available if he'll get back
+  if (!user) {
+    return null;
+  }
+
   const parsedDate = new Date(date);
 
   return (

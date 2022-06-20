@@ -1,3 +1,4 @@
+import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import { styled } from '@mui/material/styles';
@@ -72,7 +73,8 @@ export const Users = styled(Box)(({ theme }: { theme: Theme }) => ({
   },
 
   [theme.breakpoints.down('sm')]: {
-    display: 'none',
+    display: 'flex',
+    width: '10%',
   },
 }));
 
@@ -82,6 +84,10 @@ export const Messages = styled(Box)(({ theme }: { theme: Theme }) => ({
   position: 'relative',
   borderTop: `1px solid ${theme.palette.border.main}`,
   boxShadow: `0 0 1.5em -.5em inset ${theme.palette.border.dark}`,
+
+  [theme.breakpoints.down('sm')]: {
+    flex: 5,
+  },
 }));
 
 export const Info = styled(Box)(({ theme }: { theme: Theme }) => ({
@@ -117,7 +123,14 @@ export const Logo = styled(Box)(({ theme }: { theme: Theme }) => ({
   height: '40px',
   backgroundImage: `url(/images/logo.webp)`,
   backgroundSize: 'contain',
+  backgroundRepeat: 'no-repeat',
   marginRight: '1em',
   borderRadius: '7px',
   boxShadow: `0 0px 0.4em 0em inset ${theme.palette.border.dark}`,
+}));
+
+export const Title = styled(Typography)(({ theme }: { theme: Theme }) => ({
+  fontSize: theme.typography.h4.fontSize,
+  height: theme.typography.h4.fontSize,
+  whiteSpace: 'nowrap',
 }));

@@ -4,10 +4,10 @@ import { CallExitUser } from 'store/user/action';
 import Box from '@mui/material/Box';
 import { UserData, UserMessage } from 'types';
 import { RootState } from 'store/reducer';
-import Typography from '@mui/material/Typography';
 import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
 import LogoutIcon from '@mui/icons-material/Logout';
+import Skeleton from '@mui/material/Skeleton';
 
 import useChat from 'hooks/useChat';
 import {
@@ -21,6 +21,7 @@ import {
   Info,
   MessagesList,
   Logo,
+  Title,
 } from './styles';
 import ChatInput from './components/ChatInput';
 import UserInGroup from './components/UserInGroup';
@@ -82,15 +83,11 @@ function Chat() {
       <ChatBlock>
         <Box sx={{ flexDirection: 'column', flex: 5 }}>
           <Header>
-            <Box sx={{ display: 'flex' }}>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <Logo />
-              <Typography
-                color="primary"
-                variant="h4"
-                sx={{ marginTop: '5px' }}
-              >
+              <Title color="primary" variant="h4">
                 Zen Chat
-              </Typography>
+              </Title>
             </Box>
             {user?.id ? (
               <ExitButton onClick={handleExit}>
@@ -104,6 +101,9 @@ function Chat() {
               {users?.map((u) => (
                 <UserInGroup user={u} key={u.id} selectUser={showUserHandler} />
               ))}
+              {!users?.length ? (
+                <Skeleton variant="rectangular" width="100%" height={50} />
+              ) : null}
             </Users>
             <Messages>
               <MessagesList ref={ref}>
@@ -115,6 +115,28 @@ function Chat() {
                     selectUser={showUserHandler}
                   />
                 ))}
+                {!users?.length ? (
+                  <>
+                    <Skeleton
+                      variant="rectangular"
+                      width="70%"
+                      height={40}
+                      sx={{ margin: '1em 0 0 1em' }}
+                    />
+                    <Skeleton
+                      variant="rectangular"
+                      width="70%"
+                      height={70}
+                      sx={{ margin: '1em 1em 1em auto' }}
+                    />
+                    <Skeleton
+                      variant="rectangular"
+                      width="70%"
+                      height={60}
+                      sx={{ margin: '0 1em 0' }}
+                    />
+                  </>
+                ) : null}
               </MessagesList>
               <ChatInput
                 scrollBottom={scrollBottom}
@@ -123,10 +145,12 @@ function Chat() {
             </Messages>
           </Content>
         </Box>
-        <Info className={showUserInfo ? 'visible' : ''}>
-          {showUserInfo && (
-            <VisitorInfo user={showUserInfo} closeHandler={close} />
-          )}
+        <Info>
+          <VisitorInfo
+            user={showUserInfo}
+            closeHandler={close}
+            currentUser={user?.id === showUserInfo?.id}
+          />
         </Info>
         <Snackbar
           open={error}

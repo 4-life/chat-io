@@ -1,6 +1,7 @@
 import { Popover } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Theme } from 'styles';
+import Input from '@mui/material/Input';
 
 export const Box = styled('div')(({ theme }: { theme: Theme }) => ({
   display: 'flex',
@@ -14,10 +15,18 @@ export const Box = styled('div')(({ theme }: { theme: Theme }) => ({
   boxShadow: `0 -.6em 1em -1em ${theme.palette.border.main}`,
   alignItems: 'center',
   backdropFilter: 'blur(10px)',
+
+  [theme.breakpoints.down('md')]: {
+    position: 'fixed',
+  },
 }));
 
 export const StyledPopover = styled(Popover)({
   '& .MuiPopover-paper': {
     background: 'transparent',
   },
+});
+
+export const StyledInput = styled(Input)({
+  marginTop: '4px',
 });

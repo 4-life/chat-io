@@ -1,7 +1,18 @@
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import { styled } from '@mui/material/styles';
+import { keyframes, styled } from '@mui/material/styles';
 import { Theme } from 'styles';
+
+const reveal = keyframes`
+  0% {
+    transform: translate3d(-100%, 0, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+`;
 
 export const Box = styled('div')(({ theme }: { theme: Theme }) => ({
   display: 'flex',
@@ -12,25 +23,44 @@ export const Box = styled('div')(({ theme }: { theme: Theme }) => ({
   justifyContent: 'flex-start',
 }));
 
-export const UserName = styled(Typography)({
+export const UserName = styled(Typography)(({ theme }: { theme: Theme }) => ({
   whiteSpace: 'nowrap',
   textOverflow: 'ellipsis',
   overflow: 'hidden',
-});
+  paddingLeft: '1em',
 
-export const UserStatus = styled(Typography)({
+  [theme.breakpoints.down('sm')]: {
+    display: 'none',
+  },
+}));
+
+export const UserStatus = styled(Typography)(({ theme }: { theme: Theme }) => ({
   whiteSpace: 'nowrap',
   textOverflow: 'ellipsis',
   overflow: 'hidden',
-});
+  paddingLeft: '1em',
 
-export const Btn = styled(Button)({
+  [theme.breakpoints.down('sm')]: {
+    display: 'none',
+  },
+}));
+
+export const Btn = styled(Button)(({ theme }: { theme: Theme }) => ({
   textTransform: 'none',
   textAlign: 'left',
   width: '100%',
   padding: '1em',
-});
+  animation: `${reveal} .7s ease`,
 
-export const TimeAgo = styled(Typography)({
+  [theme.breakpoints.down('sm')]: {
+    padding: '10%',
+  },
+}));
+
+export const TimeAgo = styled(Typography)(({ theme }: { theme: Theme }) => ({
   textAlign: 'right',
-});
+
+  [theme.breakpoints.down('sm')]: {
+    display: 'none',
+  },
+}));

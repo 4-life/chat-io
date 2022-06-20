@@ -3,12 +3,11 @@ import { BaseEmoji } from 'emoji-mart';
 import EmojiPicker from 'components/EmojiPicker';
 import IconButton from '@mui/material/IconButton';
 import Grid from '@mui/material/Grid';
-import Input from '@mui/material/Input';
 import FormControl from '@mui/material/FormControl';
 import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt';
 import SendIcon from '@mui/icons-material/Send';
 
-import { Box, StyledPopover } from './styles';
+import { Box, StyledPopover, StyledInput } from './styles';
 
 type Props = { scrollBottom: () => void; sendMessage: (text: string) => void };
 
@@ -93,16 +92,15 @@ function ChatInput({ scrollBottom, sendMessage }: Props) {
             </StyledPopover>
           </Grid>
           <Grid item xs={10}>
-            <Input
+            <StyledInput
               color="secondary"
               placeholder="Type something..."
               fullWidth
               disableUnderline
-              margin="dense"
               required
+              margin="dense"
               value={txt}
               onChange={handleChange}
-              sx={{ marginTop: '4px' }}
               ref={inputRef}
             />
           </Grid>

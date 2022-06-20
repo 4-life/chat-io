@@ -6,12 +6,14 @@ import { Theme } from 'styles';
 export const Box = styled('div')(({ theme }: { theme: Theme }) => ({
   display: 'flex',
   width: '100%',
-  borderTop: `1px solid ${theme.palette.border.main}`,
+  borderTop: `2px solid ${theme.palette.border.main}`,
   boxShadow: `0 0.3em 0.5em -0.3em inset ${theme.palette.border.dark}`,
   alignItems: 'flex-start',
   justifyContent: 'flex-start',
   flexDirection: 'column',
   padding: '3vh 1em',
+  height: '100%',
+  background: theme.gradient.main,
 }));
 
 export const Header = styled(Typography)({

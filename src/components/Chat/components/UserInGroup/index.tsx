@@ -19,13 +19,8 @@ function UserInGroup({ user, selectUser }: Props) {
     <Box>
       <Btn onClick={() => selectUser(user)}>
         <Grid container spacing={0} alignItems="center">
-          <Grid item xs={2}>
-            <Badge
-              color="success"
-              variant="dot"
-              invisible={!online}
-              sx={{ marginRight: '1em' }}
-            >
+          <Grid item xs={12} sm={2}>
+            <Badge color="success" variant="dot" invisible={!online}>
               <Avatar
                 alt={`${name} avatar`}
                 src={getAvatarUrl(avatar)}
@@ -34,11 +29,11 @@ function UserInGroup({ user, selectUser }: Props) {
               />
             </Badge>
           </Grid>
-          <Grid item xs={8}>
+          <Grid item xs={0} sm={8}>
             <UserName>{name}</UserName>
             <UserStatus color="secondary">{status}</UserStatus>
           </Grid>
-          <Grid item xs={2}>
+          <Grid item xs={0} sm={2}>
             <TimeAgo color="secondary">
               {user.online ? getTimeAgo(parsedDate) : 'offline'}
             </TimeAgo>
