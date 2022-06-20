@@ -32,7 +32,7 @@ function Message({ message, user, selectUser }: Props) {
   return (
     <Grid
       container
-      spacing={2}
+      spacing={1}
       sx={{ flexDirection: me ? 'row-reverse' : 'inherit', margin: '.5em 0' }}
     >
       <Grid item xs={3} sm={3} md={2}>
