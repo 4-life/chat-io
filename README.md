@@ -1,4 +1,4 @@
-# Simple group chat app (work in progress) [![Build status](https://github.com/4-life/chat-io/actions/workflows/main.yml/badge.svg)](https://github.com/4-life/chat-io/actions) [![Last commit](https://img.shields.io/github/last-commit/4-life/chat-io)](https://github.com/4-life/chat-io/commit/master)
+# Simple group chat app [![Build status](https://github.com/4-life/chat-io/actions/workflows/main.yml/badge.svg)](https://github.com/4-life/chat-io/actions) [![Last commit](https://img.shields.io/github/last-commit/4-life/chat-io)](https://github.com/4-life/chat-io/commit/master)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
