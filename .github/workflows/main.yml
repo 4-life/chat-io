@@ -6,7 +6,7 @@ on:
     - master
 
 jobs:
-  tests:
+  install:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -21,6 +21,18 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci --ignore-scripts
 
+  tests:
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Restore node_modules
+        uses: actions/cache@v3
+        with:
+          path: ./node_modules
+          key: modules-${{ hashFiles('package-lock.json') }}
+
       - name: Linter
         run: npm run lint
 
@@ -28,6 +40,7 @@ jobs:
         run: npm run test
 
   build:
+    needs: install
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -38,7 +51,6 @@ jobs:
           key: app-build-${{ hashFiles('package-lock.json') }}
 
       - name: Restore node_modules
-        id: cache-npm
         uses: actions/cache@v3
         with:
           path: ./node_modules
