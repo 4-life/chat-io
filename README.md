@@ -11,6 +11,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ![SocketIO](https://img.shields.io/badge/-SocketIO-333333?style=flat-square&logo=socketdotio)
 ![MUI](https://img.shields.io/badge/-MUI-333333?style=flat-square&logo=MUI)
 ![Jest](https://img.shields.io/badge/-Jest-333333?style=flat-square&logo=jest)
+![TestCafe](https://img.shields.io/badge/-TestCafe-333333?style=flat-square&logo=testcafe)
 ![ESLint](https://img.shields.io/badge/-ESLint-333333?style=flat-square&logo=eslint)
 
 ### `npm start`
