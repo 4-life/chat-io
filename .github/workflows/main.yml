@@ -1,4 +1,4 @@
-name: Build chat-io
+name: Tests and deploy
 
 on:
   push:
@@ -47,7 +47,7 @@ jobs:
       - name: Build the app
         run: npm run build
 
-  e2e:
+  endtoend:
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -58,7 +58,7 @@ jobs:
         run: npm run e2e
 
   deploy:
-    needs: e2e
+    needs: endtoend
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
