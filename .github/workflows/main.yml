@@ -47,18 +47,18 @@ jobs:
       - name: Build the app
         run: npm run build
 
-  endtoend:
+  e2e:
     needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
-    - name: Run tests
-      uses: DevExpress/testcafe-action@latest
-        run: npm run e2e
+      - name: Run tests
+        uses: DevExpress/testcafe-action@latest
+          run: npm run e2e
 
   deploy:
-    needs: endtoend
+    needs: e2e
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
