@@ -55,7 +55,7 @@ jobs:
 
       - name: Run tests
         uses: DevExpress/testcafe-action@latest
-          run: npm run e2e
+        run: npm run e2e
 
   deploy:
     needs: e2e
