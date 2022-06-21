@@ -66,7 +66,9 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Run tests
-        run: npm run e2e
+        uses: DevExpress/testcafe-action@latest
+        with:
+          args: "chrome ./e2e/main.test.ts --app \"serve -s ./build \""
 
   deploy:
     needs: e2e
