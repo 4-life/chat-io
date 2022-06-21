@@ -65,6 +65,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Restore app build
+        uses: actions/cache@v3
+        with:
+          path: ./build
+          key: app-build-${{ hashFiles('package-lock.json') }}
+
       - name: Run tests
         uses: DevExpress/testcafe-action@latest
         with:
