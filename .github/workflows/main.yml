@@ -6,21 +6,67 @@ on:
     - master
 
 jobs:
-  build:
+  tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Install libs
-        run: npm i
+      - uses: actions/checkout@v3
 
-      - name: Lint
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: ./node_modules
+          key: modules-${{ hashFiles('package-lock.json') }}
+
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci --ignore-scripts
+
+      - name: Linter
         run: npm run lint
 
       - name: Tests
         run: npm run test
 
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Cache app build
+        uses: actions/cache@v3
+        with:
+          path: ./build
+          key: app-build-${{ hashFiles('package-lock.json') }}
+
+      - name: Restore node_modules
+        id: cache-npm
+        uses: actions/cache@v3
+        with:
+          path: ./node_modules
+          key: modules-${{ hashFiles('package-lock.json') }}
+
       - name: Build the app
         run: npm run build
+
+  e2e:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+    - name: Run tests
+      uses: DevExpress/testcafe-action@latest
+        run: npm run e2e
+
+  deploy:
+    needs: e2e
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Restore app build
+        uses: actions/cache@v3
+        with:
+          path: ./build
+          key: app-build-${{ hashFiles('package-lock.json') }}
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1

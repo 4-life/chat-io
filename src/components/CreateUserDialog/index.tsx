@@ -58,7 +58,7 @@ function CreateUserDialog() {
   }, [user]);
 
   return (
-    <StyledDialog open={open}>
+    <StyledDialog open={open} data-test-id="create-user-dialog">
       <DialogTitle>Create your character</DialogTitle>
       <DialogContent>
         <FormControl
@@ -77,6 +77,7 @@ function CreateUserDialog() {
             variant="standard"
             value={username}
             onChange={handleChangeName}
+            data-test-id="username"
           />
           <TextField
             margin="dense"
@@ -86,6 +87,7 @@ function CreateUserDialog() {
             variant="standard"
             value={userstatus}
             onChange={handleChangeStatus}
+            data-test-id="userstatus"
           />
           <Avatars>
             {avatars.map((avatar) => (
@@ -94,6 +96,7 @@ function CreateUserDialog() {
                 key={avatar}
                 onClick={() => handleChangeAvatar(avatar)}
                 className={avatar === useravatar ? 'active' : ''}
+                data-test-id="avatar"
               >
                 <ImageSrc
                   style={{ backgroundImage: `url(${getAvatarUrl(avatar)})` }}
@@ -110,6 +113,7 @@ function CreateUserDialog() {
           size="large"
           endIcon={<LoginIcon fontSize="small" />}
           sx={{ width: '100%' }}
+          data-test-id="submit"
         >
           Join
         </Button>
