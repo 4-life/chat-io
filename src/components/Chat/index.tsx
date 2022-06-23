@@ -7,7 +7,6 @@ import { RootState } from 'store/reducer';
 import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
 import LogoutIcon from '@mui/icons-material/Logout';
-import Skeleton from '@mui/material/Skeleton';
 
 import useChat from 'hooks/useChat';
 import {
@@ -27,6 +26,8 @@ import ChatInput from './components/ChatInput';
 import UserInGroup from './components/UserInGroup';
 import Message from './components/Message';
 import VisitorInfo from './components/VisitorInfo';
+import ChatSkeleton from './components/Skeletons/chat';
+import UsersSkeleton from './components/Skeletons/users';
 
 function Chat() {
   const ref = createRef<HTMLElement>();
@@ -101,9 +102,7 @@ function Chat() {
               {users?.map((u) => (
                 <UserInGroup user={u} key={u.id} selectUser={showUserHandler} />
               ))}
-              {!users?.length ? (
-                <Skeleton variant="rectangular" width="100%" height={50} />
-              ) : null}
+              <UsersSkeleton show={!users?.length} />
             </Users>
             <Messages>
               <MessagesList ref={ref}>
@@ -115,28 +114,7 @@ function Chat() {
                     selectUser={showUserHandler}
                   />
                 ))}
-                {!users?.length ? (
-                  <>
-                    <Skeleton
-                      variant="rectangular"
-                      width="70%"
-                      height={40}
-                      sx={{ margin: '1em 0 0 1em' }}
-                    />
-                    <Skeleton
-                      variant="rectangular"
-                      width="70%"
-                      height={70}
-                      sx={{ margin: '1em 1em 1em auto' }}
-                    />
-                    <Skeleton
-                      variant="rectangular"
-                      width="70%"
-                      height={60}
-                      sx={{ margin: '0 1em 0' }}
-                    />
-                  </>
-                ) : null}
+                <ChatSkeleton show={!users?.length} />
               </MessagesList>
               <ChatInput
                 scrollBottom={scrollBottom}

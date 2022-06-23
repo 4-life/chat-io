@@ -1,6 +1,4 @@
 import React, { memo } from 'react';
-import Avatar from '@mui/material/Avatar';
-import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
@@ -11,7 +9,15 @@ import { getAvatarUrl } from 'utils/avatars';
 import { UserData, UserMessage } from 'types';
 import isToday from 'utils/isToday';
 
-import { UserText, TextDate, icon } from './styles';
+import {
+  UserText,
+  TextDate,
+  icon,
+  MsgRoot,
+  MsgText,
+  MsgAvatar,
+  AvatarImage,
+} from './styles';
 
 type Props = {
   message: UserMessage;
@@ -30,22 +36,17 @@ function Message({ message, user, selectUser }: Props) {
   const parsedDate = new Date(date);
 
   return (
-    <Grid
-      container
-      spacing={1}
-      sx={{ flexDirection: me ? 'row-reverse' : 'inherit', margin: '.5em 0' }}
-    >
-      <Grid item xs={3} sm={3} md={2}>
+    <MsgRoot sx={{ flexDirection: me ? 'row-reverse' : 'inherit' }}>
+      <MsgAvatar>
         <Button onClick={() => selectUser(user)} sx={{ padding: 0 }}>
-          <Avatar
+          <AvatarImage
             alt={`${user?.name || 'guest'} avatar`}
             src={user ? getAvatarUrl(user.avatar) : undefined}
             variant="rounded"
-            sx={{ width: 64, height: 64, borderRadius: '20px' }}
           />
         </Button>
-      </Grid>
-      <Grid item xs={5} sm={5} md={6}>
+      </MsgAvatar>
+      <MsgText sx={{ justifyContent: me ? 'flex-end' : 'inherit' }}>
         <UserText>
           <Typography color="secondary">{text}</Typography>
           <Box>
@@ -60,8 +61,8 @@ function Message({ message, user, selectUser }: Props) {
             </TextDate>
           </Box>
         </UserText>
-      </Grid>
-    </Grid>
+      </MsgText>
+    </MsgRoot>
   );
 }
 

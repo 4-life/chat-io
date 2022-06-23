@@ -113,8 +113,8 @@ export const MessagesList = styled(Box)(({ theme }: { theme: Theme }) => ({
     display: 'none',
   },
 
-  [theme.breakpoints.down('md')]: {
-    padding: '2em 0 110px',
+  [theme.breakpoints.down('sm')]: {
+    padding: '1em 1em 110px',
   },
 }));
 

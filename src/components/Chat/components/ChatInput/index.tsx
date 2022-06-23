@@ -64,7 +64,7 @@ function ChatInput({ scrollBottom, sendMessage }: Props) {
         onSubmit={sendMsgHandle}
       >
         <Grid container spacing={0} sx={{ alignItems: 'center' }}>
-          <Grid item xs={1}>
+          <Grid item xs={2} sm={1}>
             <IconButton color="secondary" onClick={handleClick}>
               <SentimentSatisfiedAltIcon fontSize="small" />
             </IconButton>
@@ -91,7 +91,7 @@ function ChatInput({ scrollBottom, sendMessage }: Props) {
               />
             </StyledPopover>
           </Grid>
-          <Grid item xs={10}>
+          <Grid item xs={9} sm={10}>
             <StyledInput
               color="secondary"
               placeholder="Type something..."
