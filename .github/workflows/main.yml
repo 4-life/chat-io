@@ -46,12 +46,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Cache app build
-        uses: actions/cache@v3
-        with:
-          path: ./build
-          key: app-build-${{ hashFiles('package-lock.json') }}
-
       - name: Restore node_modules
         uses: actions/cache@v3
         with:
@@ -60,6 +54,12 @@ jobs:
 
       - name: Build the app
         run: npm run build
+
+      - name: Cache app build
+        uses: actions/cache@v3
+        with:
+          path: ./build
+          key: app-build-${{ hashFiles('package-lock.json') }}
 
   e2e:
     needs: build
