@@ -10,7 +10,7 @@ export const ExitButton = styled(IconButton)<IconButtonProps>(
     border: `3px solid ${theme.palette.border.main}`,
     boxShadow: `0 1em 1em -1.2em inset ${theme.palette.border.dark}, 0 2px 0.1em 0em ${theme.palette.border.dark}`,
     marginRight: '.5em',
-    background: '#4f5a8f',
+    background: theme.palette.secondary.dark,
     borderRadius: '15px',
   })
 );

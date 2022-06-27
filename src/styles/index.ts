@@ -66,6 +66,7 @@ const theme = createTheme({
     secondary: {
       light: orange[500],
       main: '#8f99cc',
+      dark: '#4f5a8f',
       // dark: will be calculated from palette.secondary.main,
       contrastText: '#ffcc00',
     },
