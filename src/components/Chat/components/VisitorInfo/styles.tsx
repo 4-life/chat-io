@@ -20,7 +20,7 @@ export const Header = styled(Typography)({
   justifyContent: 'space-between',
   display: 'flex',
   width: '100%',
-  alignItems: 'center',
+  alignItems: 'baseline',
   marginBottom: '3vh',
 });
 

@@ -66,6 +66,9 @@ function Chat() {
     scrollBottom
   );
 
+  // eslint-disable-next-line no-console
+  console.log(users);
+
   useEffect(() => {
     window.addEventListener('beforeunload', () => {
       userExit(user?.id);
@@ -106,15 +109,16 @@ function Chat() {
             </Users>
             <Messages>
               <MessagesList ref={ref}>
-                {messages?.map((message) => (
-                  <Message
-                    message={message}
-                    key={message.id}
-                    user={getUserByMessage(message)}
-                    selectUser={showUserHandler}
-                  />
-                ))}
-                <ChatSkeleton show={!users?.length} />
+                {user &&
+                  messages?.map((message) => (
+                    <Message
+                      message={message}
+                      key={message.id}
+                      user={getUserByMessage(message)}
+                      selectUser={showUserHandler}
+                    />
+                  ))}
+                <ChatSkeleton show={!user} />
               </MessagesList>
               <ChatInput
                 scrollBottom={scrollBottom}

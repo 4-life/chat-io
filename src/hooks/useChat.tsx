@@ -2,27 +2,38 @@ import { useCallback, useRef, useState, useEffect } from 'react';
 import { io } from 'socket.io-client';
 import { useShallowCompareEffect } from 'react-use';
 import { SocketInstance, UserData, UserMessage, SocketActions } from 'types';
-import randomId from 'utils/randomId';
+import { faker } from '@faker-js/faker';
 import env from 'environment';
 
 const { SERVER_URL } = env();
 
-const useChat = (currentUser: UserData | null, scrollBottom: () => void) => {
+const useChat = (currentUser: UserData | null, scrollBottom?: () => void) => {
   const [error, setError] = useState(false);
   const [users, setUsers] = useState<UserData[]>([]);
   const [messages, setMessages] = useState<UserMessage[]>([]);
 
   const socketRef = useRef<SocketInstance>();
 
+  // eslint-disable-next-line no-console
+  console.log(currentUser);
+
   useShallowCompareEffect(() => {
+    socketRef.current = io(SERVER_URL, {
+      secure: true,
+    });
+
+    socketRef.current.on(SocketActions.USERS, (usersList) => {
+      // eslint-disable-next-line no-console
+      console.log('emit');
+      // eslint-disable-next-line no-console
+      console.log(usersList);
+      setUsers(usersList);
+    });
+
+    socketRef.current.emit(SocketActions.USERS_GET);
+
     if (currentUser) {
-      socketRef.current = io(SERVER_URL, {
-        secure: true,
-      });
       socketRef.current.emit(SocketActions.USER_ADD, currentUser);
-      socketRef.current.on(SocketActions.USERS, (usersList) => {
-        setUsers(usersList);
-      });
 
       socketRef.current.on('connect_error', () => {
         setError(true);
@@ -43,11 +54,10 @@ const useChat = (currentUser: UserData | null, scrollBottom: () => void) => {
             : { ...msg, me: false }
         );
         setMessages(updatedMessages);
-        scrollBottom();
+        scrollBottom?.();
       });
     } else {
       setMessages([]);
-      setUsers([]);
     }
 
     return () => {
@@ -62,7 +72,7 @@ const useChat = (currentUser: UserData | null, scrollBottom: () => void) => {
       }
 
       const newMessage: UserMessage = {
-        id: randomId(),
+        id: Number(faker.random.numeric(7)),
         userId: currentUser.id,
         text: messageText,
         date: new Date().toJSON(),
@@ -74,7 +84,7 @@ const useChat = (currentUser: UserData | null, scrollBottom: () => void) => {
 
       setMessages([...messages, newMessage]);
 
-      scrollBottom();
+      scrollBottom?.();
     },
     [currentUser, scrollBottom, setMessages, messages]
   );

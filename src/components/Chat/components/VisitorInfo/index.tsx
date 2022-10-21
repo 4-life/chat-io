@@ -5,6 +5,7 @@ import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import Drawer from '@mui/material/Drawer';
 import Typography from '@mui/material/Typography';
 import CircleIcon from '@mui/icons-material/Circle';
+import ThreePIcon from '@mui/icons-material/ThreeP';
 
 import { UserData } from 'types';
 import { getAvatarUrl } from 'utils/avatars';
@@ -26,7 +27,11 @@ function VisitorInfo({ user, closeHandler, currentUser }: Props) {
     <Drawer anchor="right" open={!!user} onClose={closeHandler}>
       <Box>
         <Header variant="h5" color="primary">
-          {currentUser ? 'My' : 'Visitor'} Info
+          <span>
+            <ThreePIcon sx={{ verticalAlign: 'text-bottom' }} />
+            &nbsp;
+            {currentUser ? 'My' : 'Visitor'} Info
+          </span>
           <IconButton color="secondary" onClick={closeHandler}>
             <CancelOutlinedIcon fontSize="small" />
           </IconButton>
@@ -52,6 +57,7 @@ function VisitorInfo({ user, closeHandler, currentUser }: Props) {
             {getTimeAgo(parsedDate, false)}
           </Typography>
         </Typography>
+
         <Typography color="secondary">
           Status:&nbsp;
           <Typography component="span" color="primary">
@@ -60,6 +66,13 @@ function VisitorInfo({ user, closeHandler, currentUser }: Props) {
               color={online ? 'success' : 'error'}
               sx={{ verticalAlign: 'middle', width: 10, marginLeft: '3px' }}
             />
+          </Typography>
+        </Typography>
+
+        <Typography color="secondary">
+          Job Title:&nbsp;
+          <Typography component="span" color="primary">
+            {user?.jobtitle}
           </Typography>
         </Typography>
       </Box>
