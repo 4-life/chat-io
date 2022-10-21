@@ -66,9 +66,6 @@ function Chat() {
     scrollBottom
   );
 
-  // eslint-disable-next-line no-console
-  console.log(users);
-
   useEffect(() => {
     window.addEventListener('beforeunload', () => {
       userExit(user?.id);

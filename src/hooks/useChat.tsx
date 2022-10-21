@@ -14,19 +14,12 @@ const useChat = (currentUser: UserData | null, scrollBottom?: () => void) => {
 
   const socketRef = useRef<SocketInstance>();
 
-  // eslint-disable-next-line no-console
-  console.log(currentUser);
-
   useShallowCompareEffect(() => {
     socketRef.current = io(SERVER_URL, {
       secure: true,
     });
 
     socketRef.current.on(SocketActions.USERS, (usersList) => {
-      // eslint-disable-next-line no-console
-      console.log('emit');
-      // eslint-disable-next-line no-console
-      console.log(usersList);
       setUsers(usersList);
     });
 
