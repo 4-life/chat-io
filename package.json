@@ -16,6 +16,7 @@
     "emoji-mart": "^5.1.0",
     "eslint-config-airbnb": "^19.0.4",
     "javascript-time-ago": "^2.5.4",
+    "jest-canvas-mock": "^2.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.2",
@@ -28,8 +29,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "INLINE_RUNTIME_CHUNK=false react-scripts start",
-    "build": "INLINE_RUNTIME_CHUNK=false react-scripts build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "lint": "eslint \"src/**/*.{ts,tsx}\"",
     "e2e": "testcafe chrome ./e2e/main.test.ts --debug-on-fail --app \"serve -s ./build \""

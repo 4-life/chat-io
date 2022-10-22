@@ -56,7 +56,7 @@ const useChat = (currentUser: UserData | null, scrollBottom?: () => void) => {
     return () => {
       socketRef.current?.disconnect();
     };
-  }, [currentUser, scrollBottom]);
+  }, [currentUser || {}, scrollBottom]);
 
   const sendMessage = useCallback(
     (messageText: string) => {

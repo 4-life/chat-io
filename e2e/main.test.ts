@@ -9,7 +9,7 @@ fixture`Getting Started`
 
 test('Should not join if form is not valid', async t => {
   const username = 'John Doe';
-  const userstatus = 'My status is ok!';
+  const jobtitle = 'My job';
 
   const createUserDialog = selectByDataTestId('create-user-dialog');
   const createUserDialogExists = createUserDialog.exists;
@@ -17,8 +17,8 @@ test('Should not join if form is not valid', async t => {
   const userNameInput = selectByDataTestId('username');
   const userNameInputExists = userNameInput.exists;
 
-  const userStatusInput = selectByDataTestId('userstatus');
-  const userStatusInputExists = userStatusInput.exists;
+  const userJobInput = selectByDataTestId('jobtitle');
+  const userJobInputExists = userJobInput.exists;
 
   const avatar = selectByDataTestId('avatar');
   const avatarsExists = avatar.exists;
@@ -37,7 +37,7 @@ test('Should not join if form is not valid', async t => {
     .click(submitButton)
     .expect(createUserDialogExists).ok()
 
-    .typeText(userStatusInput, userstatus)
+    .typeText(userJobInput, jobtitle)
 
     .click(submitButton)
     .expect(createUserDialogExists).ok()
@@ -45,7 +45,7 @@ test('Should not join if form is not valid', async t => {
 
 test('Should create new user', async t => {
   const username = 'John Doe';
-  const userstatus = 'My status is ok!';
+  const jobtitle = 'My job';
 
   const createUserDialog = selectByDataTestId('create-user-dialog');
   const createUserDialogExists = createUserDialog.exists;
@@ -53,8 +53,8 @@ test('Should create new user', async t => {
   const userNameInput = selectByDataTestId('username');
   const userNameInputExists = userNameInput.exists;
 
-  const userStatusInput = selectByDataTestId('userstatus');
-  const userStatusInputExists = userStatusInput.exists;
+  const userJobInput = selectByDataTestId('jobtitle');
+  const userJobInputExists = userJobInput.exists;
 
   const avatar = selectByDataTestId('avatar');
   const avatarsExists = avatar.exists;
@@ -68,8 +68,8 @@ test('Should create new user', async t => {
     .expect(userNameInputExists).ok()
     .typeText(userNameInput, username)
 
-    .expect(userStatusInputExists).ok()
-    .typeText(userStatusInput, userstatus)
+    .expect(userJobInputExists).ok()
+    .typeText(userJobInput, jobtitle)
 
     .expect(avatarsExists).ok()
     .click(avatar)
