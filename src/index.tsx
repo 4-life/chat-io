@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import env from 'environment';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -20,3 +21,5 @@ if (!PRODUCTION) {
   // eslint-disable-next-line no-console
   reportWebVitals(console.log);
 }
+
+serviceWorkerRegistration.register();

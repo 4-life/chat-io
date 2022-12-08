@@ -1,6 +1,7 @@
 import React, { useState, createRef, useCallback, useEffect } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { CallExitUser } from 'store/user/action';
+import displayConfirmNotification from 'utils/pushApi';
 import Box from '@mui/material/Box';
 import { UserData, UserMessage } from 'types';
 import { RootState } from 'store/reducer';
@@ -70,6 +71,15 @@ function Chat() {
     window.addEventListener('beforeunload', () => {
       userExit(user?.id);
     });
+
+    if ('Notification' in window) {
+      Notification.requestPermission((result) => {
+        if (result === 'granted') {
+          displayConfirmNotification();
+          // configurePushSubscription();
+        }
+      });
+    }
   }, [user, userExit]);
 
   const getUserByMessage = useCallback(
