@@ -12,11 +12,11 @@ jobs:
   install:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Cache node modules
         id: cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ./node_modules
           key: modules-${{ hashFiles('package-lock.json') }}
@@ -29,10 +29,10 @@ jobs:
     needs: install
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Restore node_modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ./node_modules
           key: modules-${{ hashFiles('package-lock.json') }}
@@ -47,9 +47,9 @@ jobs:
     needs: install
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Restore node_modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ./node_modules
           key: modules-${{ hashFiles('package-lock.json') }}
@@ -58,7 +58,7 @@ jobs:
         run: npm run build
 
       - name: Cache app build
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ./build
           key: app-build-${{ github.head_ref }}.${{ github.sha }}
@@ -67,10 +67,10 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Restore app build
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ./build
           key: app-build-${{ github.head_ref }}.${{ github.sha }}
@@ -84,9 +84,9 @@ jobs:
     needs: e2e
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Restore app build
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ./build
           key: app-build-${{ github.head_ref }}.${{ github.sha }}
