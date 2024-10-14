@@ -34,7 +34,7 @@ export const UserText = styled(Box)(({ theme }: { theme: Theme }) => ({
   [theme.breakpoints.down('sm')]: {
     margin: '0 1em',
     minWidth: '50%',
-    maxWidth: '70%',
+    maxWidth: '100%',
   },
 }));
 

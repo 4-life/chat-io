@@ -100,7 +100,12 @@ function Chat() {
           <Content>
             <Users>
               {users?.map((u) => (
-                <UserInGroup user={u} key={u.id} selectUser={showUserHandler} />
+                <UserInGroup
+                  user={u}
+                  key={u.id}
+                  selectUser={showUserHandler}
+                  currentUser={user?.id === u.id}
+                />
               ))}
               <UsersSkeleton show={!users?.length} />
             </Users>

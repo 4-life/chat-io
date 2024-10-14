@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
 import Avatar from '@mui/material/Avatar';
+import { Typography } from '@mui/material';
 import Badge from '@mui/material/Badge';
 import Grid from '@mui/material/Grid';
 
@@ -9,9 +10,13 @@ import { getAvatarUrl } from 'utils/avatars';
 
 import { Box, TimeAgo, UserName, UserStatus, Btn } from './styles';
 
-type Props = { user: UserData; selectUser: (user?: UserData) => void };
+type Props = {
+  user: UserData;
+  selectUser: (user?: UserData) => void;
+  currentUser: boolean;
+};
 
-function UserInGroup({ user, selectUser }: Props) {
+function UserInGroup({ user, selectUser, currentUser }: Props) {
   const { name, status, online, connectedDate, avatar } = user;
   const parsedDate = connectedDate ? new Date(connectedDate) : new Date();
 
@@ -30,7 +35,14 @@ function UserInGroup({ user, selectUser }: Props) {
             </Badge>
           </Grid>
           <Grid item xs={0} sm={8}>
-            <UserName>{name}</UserName>
+            <UserName>
+              {name}
+              {currentUser ? (
+                <Typography component="span" color="gray" marginLeft={1}>
+                  (you)
+                </Typography>
+              ) : null}
+            </UserName>
             <UserStatus color="secondary">{status}</UserStatus>
           </Grid>
           <Grid item xs={0} sm={2}>

@@ -126,7 +126,8 @@ export const Logo = styled(Box)(({ theme }: { theme: Theme }) => ({
   backgroundRepeat: 'no-repeat',
   marginRight: '1em',
   borderRadius: '7px',
-  boxShadow: `0 0px 0.4em 0em inset ${theme.palette.border.dark}`,
+  boxShadow: `0 2px 0.1em 0em ${theme.palette.border.dark}`,
+  backgroundColor: 'white',
 }));
 
 export const Title = styled(Typography)(({ theme }: { theme: Theme }) => ({

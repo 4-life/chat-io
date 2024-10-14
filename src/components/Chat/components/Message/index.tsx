@@ -48,7 +48,9 @@ function Message({ message, user, selectUser }: Props) {
       </MsgAvatar>
       <MsgText sx={{ justifyContent: me ? 'flex-end' : 'inherit' }}>
         <UserText>
-          <Typography color="secondary">{text}</Typography>
+          <Typography color="secondary" sx={{ wordBreak: 'break-word' }}>
+            {text}
+          </Typography>
           <Box>
             <TextDate>
               {status === 'sent' && me ? <DoneIcon sx={icon} /> : null}

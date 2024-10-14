@@ -48,6 +48,19 @@ const useChat = (currentUser: UserData | null, scrollBottom?: () => void) => {
         );
         setMessages(updatedMessages);
         scrollBottom?.();
+        // const otherMsgs = updatedMessages.filter(({ me }) => !me);
+        // const lastMsg = otherMsgs[otherMsgs.length - 1];
+
+        // if (lastMsg) {
+        //   const sender = users.find(({ id }) => id === lastMsg.userId);
+
+        //   if (sender) {
+        //     showNotification(`New message from ${sender.name}`, {
+        //       body: lastMsg.text,
+        //       icon: '/images/logo.webp',
+        //     });
+        //   }
+        // }
       });
     } else {
       setMessages([]);
